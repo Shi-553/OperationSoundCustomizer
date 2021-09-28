@@ -8,11 +8,11 @@
 
   <Identity
     Name="0233d1de-7566-4edd-8703-ec7d79da5b8b"
-    Publisher="CN=sibat"
+    Publisher="CN=Shi"
     Version="1.0.3.0" />
 
   <Properties>
-    <DisplayName>WAPTest (Package)</DisplayName>
+    <DisplayName>OperationSoundCustomizer</DisplayName>
     <PublisherDisplayName>SHi</PublisherDisplayName>
     <Logo>Assets\Images\StoreLogo.png</Logo>
   </Properties>

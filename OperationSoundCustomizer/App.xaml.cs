@@ -13,11 +13,11 @@ namespace OperationSoundCustomizer {
         protected override async void OnLaunched(LaunchActivatedEventArgs args) {
             try {
                 blankWindow1 = new();
-                blankWindow1.Activate();//証明書 ahokusa114514
+                blankWindow1.Activate();
             }
             catch (Exception e) {
                 Debug.WriteLine(e.Message);
-                File.AppendAllText(@"C:\Users\sibat\source\repos\OperationSoundCustomizer\OperationSoundCustomizer\myerrorlog.txt", e.Message);
+                File.AppendAllText(@"myerrorlog.txt", e.Message);
             }
             //main.Activate();
         }

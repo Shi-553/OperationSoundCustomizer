@@ -16,6 +16,8 @@
     <AssemblyName>OperationSoundCustomizer</AssemblyName>
 	  <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
 	  <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
+	  <PackageCertificateThumbprint>6A6E524488090DAF3AE2018BDB28FB282975E7AF</PackageCertificateThumbprint>
+	  <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="BlankWindow1.xaml" />
