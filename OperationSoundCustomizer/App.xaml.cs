@@ -10,7 +10,7 @@ namespace OperationSoundCustomizer {
             this.InitializeComponent();
         }
 
-        protected override async void OnLaunched(LaunchActivatedEventArgs args) {
+        protected override void OnLaunched(LaunchActivatedEventArgs args) {
             try {
                 blankWindow1 = new();
                 blankWindow1.Activate();
