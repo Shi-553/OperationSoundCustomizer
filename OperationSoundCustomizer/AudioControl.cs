@@ -303,11 +303,29 @@ namespace OperationSoundCustomizer {
                 MaxPlaybackSpeedFactor = 2
             };
 
-            CreateAudioGraphResult result = await AudioGraph.CreateAsync(settings);
+            var result = await AudioGraph.CreateAsync(settings);
+            switch (result.Status) {
+                case AudioGraphCreationStatus.DeviceNotAvailable:
+                    throw new Exception("Create AudioGraph - Device not available.");
+                case AudioGraphCreationStatus.FormatNotSupported:
+                    throw new Exception("Create AudioGraph - Format Not Supported.");
+                case AudioGraphCreationStatus.UnknownFailure:
+                    throw new Exception("Create AudioGraph - Unknown Failure.");
+            }
             AudioGraph = result.Graph;
             AudioGraph.UnrecoverableErrorOccurred += AudioGraph_UnrecoverableErrorOccurred;
 
             var createDeviceResult = await AudioGraph.CreateDeviceOutputNodeAsync();
+            switch (createDeviceResult.Status) {
+                case AudioDeviceNodeCreationStatus.DeviceNotAvailable:
+                    throw new Exception("CreateDeviceOutput - Device not available.");
+                case AudioDeviceNodeCreationStatus.FormatNotSupported:
+                    throw new Exception("CreateDeviceOutput - Format Not Supported.");
+                case AudioDeviceNodeCreationStatus.UnknownFailure:
+                    throw new Exception("CreateDeviceOutput - Unknown Failure.");
+                case AudioDeviceNodeCreationStatus.AccessDenied:
+                    throw new Exception("CreateDeviceOutput - Access Denied.");
+            }
 
             OutputNode = createDeviceResult.DeviceOutputNode;
             AudioGraph.Start();
@@ -333,18 +351,19 @@ namespace OperationSoundCustomizer {
         }
 
         public static void Dispose() {
-            AudioGraph.Dispose();
+            if (AudioGraph != null) {
+                AudioGraph.Dispose();
+            }
         }
 
         private static void AudioGraph_UnrecoverableErrorOccurred(AudioGraph sender, AudioGraphUnrecoverableErrorOccurredEventArgs args) {
             switch (args.Error) {
                 case AudioGraphUnrecoverableError.AudioDeviceLost:
+                    throw new Exception("Unrecoverable Error Occurred - Audio Device Lost.");
                 case AudioGraphUnrecoverableError.AudioSessionDisconnected:
-                    break;
+                    throw new Exception("Unrecoverable Error Occurred - Audio Session Disconnected.");
                 case AudioGraphUnrecoverableError.UnknownFailure:
-                    break;
-                default:
-                    break;
+                    throw new Exception("Unrecoverable Error Occurred - Unknown Failure.");
             }
         }
 

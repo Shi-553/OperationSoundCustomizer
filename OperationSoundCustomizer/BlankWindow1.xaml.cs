@@ -46,10 +46,15 @@ namespace OperationSoundCustomizer {
             }
 
             if (!isEnable) {
-                main = await MainWindow.CreateAsync();
-                StartStopButton.Content = "Stop";
+                try {
+                    main = await MainWindow.CreateAsync();
+                    StartStopButton.Content = "Stop";
 
-                isEnable = true;
+                    isEnable = true;
+                }
+                catch (Exception error) {
+                    StartStopButton.Content = "Error: " + error.Message;
+                }
             }
             else {
                 StartStopButton.Content = "Start";
