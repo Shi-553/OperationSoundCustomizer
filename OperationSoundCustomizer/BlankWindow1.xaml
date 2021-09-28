@@ -1,0 +1,18 @@
+﻿<Window
+    x:Class="OperationSoundCustomizer.BlankWindow1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OperationSoundCustomizer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1">
+            <Button Click="Button_Click_Start" x:Name="StartStopButton">
+                Start
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

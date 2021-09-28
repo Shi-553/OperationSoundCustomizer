@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AppInstaller
+	Uri="file:///C:/Users/sibat/source/repos/OperationSoundCustomizer/build/OperationSoundCustomizer (Package)_x64.appinstaller"
+	Version="1.0.3.0" xmlns="http://schemas.microsoft.com/appx/appinstaller/2017/2">
+	<MainPackage
+		Name="0233d1de-7566-4edd-8703-ec7d79da5b8b"
+		Version="1.0.3.0"
+		Publisher="CN=sibat"
+		Uri="file:///C:/Users/sibat/source/repos/OperationSoundCustomizer/build/OperationSoundCustomizer (Package)_1.0.3.0_x64_Test/OperationSoundCustomizer (Package)_1.0.3.0_x64.msix"
+		ProcessorArchitecture="x64" />
+	<Dependencies>
+		<Package
+			Name="Microsoft.WindowsAppSDK.1.0-experimental1"
+			Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+			ProcessorArchitecture="x64"
+			Uri="file:///C:/Users/sibat/source/repos/OperationSoundCustomizer/build/OperationSoundCustomizer (Package)_1.0.3.0_x64_Test/Dependencies/x64/Microsoft.WindowsAppSDK.1.0-experimental1.msix"
+			Version="0.218.840.0" />
+		<Package
+			Name="Microsoft.VCLibs.140.00.UWPDesktop"
+			Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+			ProcessorArchitecture="x64"
+			Uri="file:///C:/Users/sibat/source/repos/OperationSoundCustomizer/build/OperationSoundCustomizer (Package)_1.0.3.0_x64_Test/Dependencies/x64/Microsoft.VCLibs.x64.14.00.Desktop.appx"
+			Version="14.0.30035.0" />
+		<Package
+			Name="Microsoft.VCLibs.140.00"
+			Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+			ProcessorArchitecture="x64"
+			Uri="file:///C:/Users/sibat/source/repos/OperationSoundCustomizer/build/OperationSoundCustomizer (Package)_1.0.3.0_x64_Test/Dependencies/x64/Microsoft.VCLibs.x64.14.00.appx"
+			Version="14.0.30035.0" />
+	</Dependencies>
+	<UpdateSettings>
+		<OnLaunch
+			HoursBetweenUpdateChecks="0" />
+	</UpdateSettings>
+</AppInstaller>

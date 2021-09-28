@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "OperationSoundCustomizer": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
