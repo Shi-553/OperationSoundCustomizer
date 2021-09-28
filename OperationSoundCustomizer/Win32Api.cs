@@ -8,6 +8,11 @@ using System.Diagnostics;
 #endif
 
 namespace OperationSoundCustomizer {
+
+    /// <summary>
+    /// https://gist.github.com/Dalgona/275ebc861eeac74c1a8d9d437d220f3b
+    /// を参考
+    /// </summary>
     public class InputHookHelper : IDisposable {
         private readonly HookProc msProc;
         private readonly HookProc kbProc;
@@ -21,10 +26,6 @@ namespace OperationSoundCustomizer {
         public InputHookHelper() {
             msProc = LowLevelMouseProc;
             kbProc = LowLevelKeyboardProc;
-        }
-
-        public void InstallHooks() {
-            InstallHooks(IntPtr.Zero);
         }
 
         public void InstallHooks(IntPtr hMod) {
