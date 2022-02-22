@@ -1,127 +1,17 @@
 ﻿using System;
-using System.Windows;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.Media.Audio;
 using Windows.Media.Render;
 using Windows.Storage;
-
-using Microsoft.Win32.SafeHandles;
 using System.Diagnostics;
 using Windows.ApplicationModel;
-using Microsoft.UI.Xaml.Controls;
 using System.Linq;
 using Windows.Storage.Search;
-using System.Collections;
 using Newtonsoft.Json;
 
-namespace OperationSoundCustomizer {
-    public class RandomHelper {
-        public static Random Random { get; } = new Random();
-
-
-        internal static int GetRandomIndex(int max) {
-            return Random.Next(max);
-        }
-
-        internal static T GetRandom<T>(params T[] list) => GetRandom((IReadOnlyList<T>)list);
-
-        internal static T GetRandom<T>(IReadOnlyList<T> list) {
-            return list[GetRandomIndex(list.Count)];
-        }
-
-        internal static double GetRandomBetweenIndex(int max) {
-            return Random.NextDouble() * max;
-        }
-
-        internal static T GetRandomBetween<T>(params T[] list) => GetRandomBetween((IReadOnlyList<T>)list);
-
-        internal static T GetRandomBetween<T>(IReadOnlyList<T> list) {
-            var rand = Random.NextDouble();
-            var randLen = rand * list.Count;
-            var floor = Convert.ToInt32(Math.Floor(randLen));
-            var ceiling = Convert.ToInt32(Math.Ceiling(randLen));
-
-            return ((dynamic)list[floor] * rand) + ((dynamic)list[ceiling] * (1 - rand));
-        }
-    }
-
-    public interface IValue<T> {
-        public T GetNextValue();
-    }
-    public class CommonValue<T> : IValue<T> {
-        public T Value { get; set; }
-        public T GetNextValue() {
-            return Value;
-        }
-    }
-
-    public interface IValueList<T> : IValue<T> {
-        public List<T> List { get; }
-    }
-
-    public class SequenceValues<T> : IValueList<T> {
-        public List<T> List { get; init; }
-
-        public SequenceValues(List<T> ts) {
-            List = ts;
-        }
-        int index = -1;
-        void Update() {
-            index = (index + 1) % List.Count;
-        }
-
-        public T GetNextValue() {
-            Update();
-            return List[index];
-        }
-    }
-
-    //途中の値のこともある
-    public class RandomBetweenValues<T> : IValueList<T> {
-        public List<T> List { get; init; }
-        public RandomBetweenValues(List<T> ts) {
-            List = ts;
-        }
-        public T GetNextValue() {
-            return RandomHelper.GetRandomBetween(List.ToArray());
-        }
-    }
-    //要素のどれかになる
-    public class RandomValues<T> : IValueList<T> {
-        public List<T> List { get; init; }
-        public RandomValues(List<T> ts) {
-            List = ts;
-        }
-
-        public T GetNextValue() {
-            return RandomHelper.GetRandom(List.ToArray());
-        }
-
-    }
-
-
-    public class LockValues<T> {
-        public IValueList<T> Values { get; init; }
-
-        [JsonIgnore]
-        readonly Dictionary<int, T> lockValues = new();
-
-        public LockValues(IValueList<T> list) { Values = list; }
-
-        public T LockValue(int id, bool isOverride = false) {
-            if (!isOverride && lockValues.TryGetValue(id, out var val)) {
-                return val;
-            }
-            var value = Values.GetNextValue();
-            lockValues[id] = value;
-            return value;
-        }
-
-        public bool UnlockValue(int id, out T val) {
-            return lockValues.Remove(id, out val);
-        }
-    }
+namespace OperationSoundCustomizer
+{
 
 
 
@@ -210,16 +100,16 @@ namespace OperationSoundCustomizer {
     //シリアライズ対応
     public class AudioWrapper : IAudio {
         [JsonIgnore]
-        IAudio audio;
-        public string path { get; init; }
+        readonly IAudio audio;
+        public string Path { get; init; }
 
         public AudioWrapper(IAudio audio) {
             this.audio = audio;
-            path = audio.File.Name;
+            Path = audio.File.Name;
         }
         [JsonConstructor]
         public AudioWrapper(string path) {
-            this.path = path;
+            this.Path = path;
             audio = AudioControl.GetAudio(path);
         }
         public bool IsPlaying => audio.IsPlaying;
@@ -292,7 +182,7 @@ namespace OperationSoundCustomizer {
 
 
     public static class AudioControl {
-        private static Dictionary<StorageFile, IAudio> audioMap = new();
+        private static readonly Dictionary<StorageFile, IAudio> audioMap = new();
 
         public static AudioGraph AudioGraph { get; private set; }
         public static AudioDeviceOutputNode OutputNode { get; private set; }
