@@ -1,0 +1,507 @@
+[
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.WasDownNow, OperationSoundCustomizer",
+      "Code": "Enter"
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer",
+      "Code": "Enter"
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-002.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-003.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-004.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-005.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-006.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-007.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Enter-008.wav"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.AnyCondition`1[[OperationSoundCustomizer.Condition.WasDownNow, OperationSoundCustomizer]], OperationSoundCustomizer",
+      "Params": {
+        "$type": "OperationSoundCustomizer.InputCode[], OperationSoundCustomizer",
+        "$values": [
+          "LeftControl",
+          "RightControl",
+          "LeftShift",
+          "RightShift"
+        ]
+      }
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.AnyCondition`1[[OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer]], OperationSoundCustomizer",
+      "Params": {
+        "$type": "OperationSoundCustomizer.InputCode[], OperationSoundCustomizer",
+        "$values": [
+          "LeftControl",
+          "RightControl",
+          "LeftShift",
+          "RightShift"
+        ]
+      }
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Shift-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Shift-002.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Shift-003.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Shift-004.wav"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.WasDownNow, OperationSoundCustomizer",
+      "Code": "Space"
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer",
+      "Code": "Space"
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Space-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Space-002.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Space-003.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Space-004.wav"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.AnyCondition`1[[OperationSoundCustomizer.Condition.WasDownNow, OperationSoundCustomizer]], OperationSoundCustomizer",
+      "Params": {
+        "$type": "OperationSoundCustomizer.InputCode[], OperationSoundCustomizer",
+        "$values": [
+          "Up",
+          "Down",
+          "Left",
+          "Right",
+          "NumberPad0",
+          "NumberPad1",
+          "NumberPad2",
+          "NumberPad3",
+          "NumberPad4",
+          "NumberPad5",
+          "NumberPad6",
+          "NumberPad7",
+          "NumberPad8",
+          "NumberPad9"
+        ]
+      }
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.AnyCondition`1[[OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer]], OperationSoundCustomizer",
+      "Params": {
+        "$type": "OperationSoundCustomizer.InputCode[], OperationSoundCustomizer",
+        "$values": [
+          "Up",
+          "Down",
+          "Left",
+          "Right",
+          "NumberPad0",
+          "NumberPad1",
+          "NumberPad2",
+          "NumberPad3",
+          "NumberPad4",
+          "NumberPad5",
+          "NumberPad6",
+          "NumberPad7",
+          "NumberPad8",
+          "NumberPad9"
+        ]
+      }
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-002.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-003.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-004.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-005.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-006.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-007.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-008.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-009.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-010.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-011.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-012.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-013.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-014.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-015.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Arrows-016.wav"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.WasAnyDownNow, OperationSoundCustomizer",
+      "Device": "Keyboard"
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.IsAnyReleasedNow, OperationSoundCustomizer",
+      "Device": "Keyboard"
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-002.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-003.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-004.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-005.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-006.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-007.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-008.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-009.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-010.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-011.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-012.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-013.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-014.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-015.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-016.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-017.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-018.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-019.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-020.wav"
+            }
+          },
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-021.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "Keyboard-022.wav"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.WasDownNow, OperationSoundCustomizer",
+      "Code": "LeftButton"
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer",
+      "Code": "LeftButton"
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "MouseL-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "MouseL-002.wav"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.WasDownNow, OperationSoundCustomizer",
+      "Code": "RightButton"
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer",
+      "Code": "RightButton"
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "MouseR-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "MouseR-002.wav"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "$type": "OperationSoundCustomizer.PairListStatement, OperationSoundCustomizer",
+    "DownCondition": {
+      "$type": "OperationSoundCustomizer.Condition.WasDownNow, OperationSoundCustomizer",
+      "Code": "MiddleButton"
+    },
+    "UpCondition": {
+      "$type": "OperationSoundCustomizer.Condition.AnyCondition, OperationSoundCustomizer",
+      "Conditions": [
+        {
+          "$type": "OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer",
+          "Code": "MiddleButton"
+        },
+        {
+          "$type": "OperationSoundCustomizer.Condition.IsReleasedNow, OperationSoundCustomizer",
+          "Code": "HWheel"
+        }
+      ]
+    },
+    "AudioPairs": {
+      "Values": {
+        "$type": "OperationSoundCustomizer.RandomValues`1[[OperationSoundCustomizer.AudioPair, OperationSoundCustomizer]], OperationSoundCustomizer",
+        "List": [
+          {
+            "Down": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "MouseM-001.wav"
+            },
+            "Up": {
+              "$type": "OperationSoundCustomizer.AudioWrapper, OperationSoundCustomizer",
+              "path": "MouseM-002.wav"
+            }
+          }
+        ]
+      }
+    }
+  }
+]
