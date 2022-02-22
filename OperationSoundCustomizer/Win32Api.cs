@@ -7,70 +7,56 @@ using System.Text;
 using System.Diagnostics;
 #endif
 
-namespace OperationSoundCustomizer {
+namespace OperationSoundCustomizer
+{
 
     /// <summary>
     /// https://gist.github.com/Dalgona/275ebc861eeac74c1a8d9d437d220f3b
     /// を参考
     /// </summary>
-    public class InputHookHelper : IDisposable {
-        private readonly HookProc msProc;
-        private readonly HookProc kbProc;
+    public abstract class InputHookHelper : IDisposable
+    {
+        private readonly HookProc proc;
+        protected abstract IntPtr Proc(int nCode, UIntPtr wParam, IntPtr lParam);
 
-        public IntPtr MouseHook { get; private set; } = IntPtr.Zero;
-        public IntPtr KeyboardHook { get; private set; } = IntPtr.Zero;
+        private IntPtr hook = IntPtr.Zero;
 
-        public event TypedEventHandler<InputHookHelper, NewMouseMessageEventArgs> NewMouseMessage;
-        public event TypedEventHandler<InputHookHelper, NewKeyboardMessageEventArgs> NewKeyboardMessage;
+        protected abstract HookType Type { get; }
 
-        public InputHookHelper() {
-            msProc = LowLevelMouseProc;
-            kbProc = LowLevelKeyboardProc;
+        public InputHookHelper()
+        {
+            proc = Proc;
         }
 
-        public void InstallHooks(IntPtr hMod) {
+        public void InstallHooks(IntPtr hMod = default)
+        {
 #if DEBUG
             DebugLog("Installing Hooks");
 #endif
-            if (MouseHook == IntPtr.Zero)
-                MouseHook = NativeMethods.SetWindowsHookEx(HookType.LowLevelMouse, msProc, hMod, 0);
-            if (KeyboardHook == IntPtr.Zero)
-                KeyboardHook = NativeMethods.SetWindowsHookEx(HookType.LowLevelKeyboard, kbProc, hMod, 0);
+            if (hook == IntPtr.Zero)
+                hook = NativeMethods.SetWindowsHookEx(Type, proc, hMod, 0);
         }
 
-        public void UninstallHooks() {
+        public void UninstallHooks()
+        {
 #if DEBUG
             DebugLog("Uninstalling Hooks");
 #endif
-            NativeMethods.UnhookWindowsHookEx(MouseHook);
-            NativeMethods.UnhookWindowsHookEx(KeyboardHook);
-            MouseHook = KeyboardHook = IntPtr.Zero;
+            NativeMethods.UnhookWindowsHookEx(hook);
+            hook = IntPtr.Zero;
         }
 
-        private IntPtr LowLevelMouseProc(int nCode, UIntPtr wParam, IntPtr lParam) {
-            if (nCode >= 0) {
-                var st = Marshal.PtrToStructure<MouseLowLevelHookStruct>(lParam);
-                NewMouseMessage?.Invoke(this, new NewMouseMessageEventArgs(st, (MouseMessage)wParam));
-            }
-            return NativeMethods.CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
-        }
-
-        private IntPtr LowLevelKeyboardProc(int nCode, UIntPtr wParam, IntPtr lParam) {
-            if (nCode >= 0) {
-                var st = Marshal.PtrToStructure<KeyboardLowLevelHookStruct>(lParam);
-                NewKeyboardMessage?.Invoke(this, new NewKeyboardMessageEventArgs(st, (KeyboardMessage)wParam));
-            }
-            return NativeMethods.CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
-        }
 
         #region IDisposable Support
         private bool disposedValue = false;
 
-        protected virtual void Dispose(bool disposing) {
+        protected virtual void Dispose(bool disposing)
+        {
 #if DEBUG
             DebugLog($"Dispose() called, disposing: {disposing}, disposedValue: {disposedValue}");
 #endif
-            if (!disposedValue) {
+            if (!disposedValue)
+            {
                 UninstallHooks();
                 disposedValue = true;
             }
@@ -78,7 +64,8 @@ namespace OperationSoundCustomizer {
 
         ~InputHookHelper() => Dispose(false);
 
-        public void Dispose() {
+        public void Dispose()
+        {
 #if DEBUG
             DebugLog("Dispose() called");
 #endif
@@ -88,40 +75,67 @@ namespace OperationSoundCustomizer {
         #endregion
 
 #if DEBUG
+
         private void DebugLog(string message)
-            => Debug.WriteLine($"[InputHookHelper:{GetHashCode():X}] {message}");
+            => Debug.WriteLine($"[InputHookHelperBase:{GetHashCode():X}] {message}");
 #endif
     }
 
-    public class NewMouseMessageEventArgs : EventArgs {
-        public MouseLowLevelHookStruct MouseStruct { get; private set; }
-        public MouseMessage MessageType { get; private set; }
 
-        public NewMouseMessageEventArgs(MouseLowLevelHookStruct mouseStruct, MouseMessage msg) {
-            this.MouseStruct = mouseStruct;
-            MessageType = msg;
+    public record MouseMessageEventArgs(MouseLowLevelHookStruct MouseStruct, MouseMessage MessageType) 
+    {
+    }
+    public class MouseHookHelper : InputHookHelper
+    {
+        protected override HookType Type => HookType.LowLevelMouse;
+
+        public event TypedEventHandler<MouseHookHelper, MouseMessageEventArgs> OnProc;
+
+
+        protected override IntPtr Proc(int nCode, UIntPtr wParam, IntPtr lParam)
+        {
+            if (nCode >= 0)
+            {
+                var st = Marshal.PtrToStructure<MouseLowLevelHookStruct>(lParam);
+                OnProc?.Invoke(this, new (st, (MouseMessage)wParam));
+            }
+            return NativeMethods.CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
+        }
+    }
+    public record KeyboardMessageEventArgs(KeyboardLowLevelHookStruct KeyboardStruct, KeyboardMessage MessageType)
+    {
+    }
+    public class KeyboardHookHelper : InputHookHelper
+    {
+        protected override HookType Type => HookType.LowLevelKeyboard;
+
+        public event TypedEventHandler<KeyboardHookHelper, KeyboardMessageEventArgs> OnProc;
+
+        protected override IntPtr Proc(int nCode, UIntPtr wParam, IntPtr lParam)
+        {
+            if (nCode >= 0)
+            {
+                var st = Marshal.PtrToStructure<KeyboardLowLevelHookStruct>(lParam);
+                OnProc?.Invoke(this, new (st, (KeyboardMessage)wParam));
+            }
+            return NativeMethods.CallNextHookEx(IntPtr.Zero, nCode, wParam, lParam);
         }
     }
 
-    public class NewKeyboardMessageEventArgs : EventArgs {
-        public KeyboardLowLevelHookStruct KeyboardStruct { get; private set; }
-        public KeyboardMessage MessageType { get; private set; }
 
-        public NewKeyboardMessageEventArgs(KeyboardLowLevelHookStruct keyboardStruct, KeyboardMessage msg) {
-            this.KeyboardStruct = keyboardStruct;
-            MessageType = msg;
-        }
-    }
+
 
     [UnmanagedFunctionPointer(CallingConvention.Winapi)]
     internal delegate IntPtr HookProc(int nCode, UIntPtr wParam, IntPtr lParam);
 
-    internal enum HookType {
+    public enum HookType
+    {
         LowLevelKeyboard = 13,
         LowLevelMouse = 14
     }
 
-    public enum MouseMessage {
+    public enum MouseMessage
+    {
         MouseMove = 0x0200,       //マウス カーソルが移動したことを示します。
         LButtonDown = 0x0201,     //左のマウス ボタンがいつ押されたかを示します。
         LButtonUp = 0x0202,       //左のマウス ボタンがいつ離されたかを示します。
@@ -139,7 +153,8 @@ namespace OperationSoundCustomizer {
         MouseHWheel = 0x020E,     //マウス ホイールが回転した事を示します。
     }
 
-    public enum KeyboardMessage {
+    public enum KeyboardMessage
+    {
         KeyDown = 0x100,
         KeyUp = 0x101,
         SysKeyDown = 0x104,
@@ -148,7 +163,8 @@ namespace OperationSoundCustomizer {
 
     //https://docs.microsoft.com/ja-jp/windows/win32/api/winuser/ns-winuser-msllhookstruct?redirectedfrom=MSDN
     [StructLayout(LayoutKind.Sequential)]
-    public struct MouseLowLevelHookStruct {
+    public struct MouseLowLevelHookStruct
+    {
         //モニターごとの 画面座標。 
         public Point pt;
         public int mouseData;
@@ -170,7 +186,8 @@ namespace OperationSoundCustomizer {
         //挿入されていた場合、加えて低いレベルからかどうか
         public bool IsLowerInjected => Convert.ToBoolean((flags >> 1) & 1);
 
-        public override string ToString() {
+        public override string ToString()
+        {
             StringBuilder sb = new();
             sb.Append("{ ");
             sb.Append("pt:");
@@ -190,15 +207,18 @@ namespace OperationSoundCustomizer {
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct Point {
+    public struct Point
+    {
         public int x;
         public int y;
 
-        public Point(int x, int y) {
+        public Point(int x, int y)
+        {
             this.x = x;
             this.y = y;
         }
-        public override string ToString() {
+        public override string ToString()
+        {
             StringBuilder sb = new();
             sb.Append("{ ");
             sb.Append("x:");
@@ -214,7 +234,8 @@ namespace OperationSoundCustomizer {
 
     //https://docs.microsoft.com/ja-jp/windows/win32/api/winuser/ns-winuser-kbdllhookstruct?redirectedfrom=MSDN
     [StructLayout(LayoutKind.Sequential)]
-    public struct KeyboardLowLevelHookStruct {
+    public struct KeyboardLowLevelHookStruct
+    {
         //1から254の仮想キーコード
         public VirtualKey vkCode;
         //ハードウェアスキャンコード。 
@@ -241,7 +262,8 @@ namespace OperationSoundCustomizer {
     }
 
 
-    internal class NativeMethods {
+    internal class NativeMethods
+    {
         [DllImport("user32.dll")]
         internal static extern IntPtr SetWindowsHookEx(HookType idHook, HookProc lpfn, IntPtr hMod, int dwThreadId);
 
