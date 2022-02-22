@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -137,7 +136,7 @@ namespace OperationSoundCustomizer {
         //     The Kana symbol key-shift button
         Kana = 21,
         //     The Hangul symbol key-shift button.
-        Hangul = 21,
+        Hangul = Kana,
         //     The Junja symbol key-shift button.
         Junja = 23,
         //     The Final symbol key-shift button.
@@ -145,7 +144,7 @@ namespace OperationSoundCustomizer {
         //     The Hanja symbol key shift button.
         Hanja = 25,
         //     The Kanji symbol key-shift button.
-        Kanji = 25,
+        Kanji = Hanja,
         //     The Esc key.
         Escape = 27,
         //     The convert button or key.

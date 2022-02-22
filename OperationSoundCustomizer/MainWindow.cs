@@ -31,7 +31,7 @@ namespace OperationSoundCustomizer {
         private MainWindow() {
         }
 
-        List<IStatement> GetDefaultStatements() {
+        static List<IStatement> GetDefaultStatements() {
             List<IStatement> statements = new();
 
 
@@ -155,8 +155,7 @@ namespace OperationSoundCustomizer {
             }
         }
 
-
-        RandomValues<AudioPair> CreateSequenceNumberName(string baseName, int begin, int end) {
+        static RandomValues<AudioPair> CreateSequenceNumberName(string baseName, int begin, int end) {
             RandomValues<AudioPair> randomValue = new(new());
             for (int i = begin; i <= end; i += 2) {
                 randomValue.List.Add(AudioControl.GetAudioPair(baseName + i.ToString("000") + ".wav", baseName + (i + 1).ToString("000")));
