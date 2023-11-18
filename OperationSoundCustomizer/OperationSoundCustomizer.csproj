@@ -27,6 +27,7 @@
 	  <AppInstallerUri>C:\Users\sibat\source\repos\OperationSoundCustomizer\OperationSoundCustomizer\package</AppInstallerUri>
 	  <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
 	  <AppxBundlePlatforms>x64</AppxBundlePlatforms>
+	  <AppxPackageDir>C:\Users\sibat\source\repos\OperationSoundCustomizer\OperationSoundCustomizer\package\</AppxPackageDir>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="BlankWindow1.xaml" />
@@ -61,6 +62,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Assets\settings\Statement.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Update="Assets\Sounds\Arrows-001.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -246,5 +250,5 @@
     </Content>
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 </Project>

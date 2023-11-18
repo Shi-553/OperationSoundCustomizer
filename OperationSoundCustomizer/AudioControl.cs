@@ -12,9 +12,6 @@ using Newtonsoft.Json;
 
 namespace OperationSoundCustomizer
 {
-
-
-
     public interface IAudio {
         public Task CreateGraph();
 
